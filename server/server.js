@@ -14,8 +14,7 @@ app.use("/api/rooms", roomRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/bookings", bookingRouter);
-~
-runDB();
+~runDB();
 
 // Global Error Handler~
 app.use(async (err, req, res, next) => {

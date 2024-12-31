@@ -4,8 +4,11 @@ import { useAuth } from "../hooks/useAuth";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ activeKey }) => {
+  const location = useLocation();
+  const defaultActiveKey = location.state?.activeKey || "1";
   const items = [
     {
       key: "1",
@@ -22,7 +25,11 @@ const Profile = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-6 text-left">
-          <Tabs defaultActiveKey="1" items={items} />
+          <Tabs
+            defaultActiveKey={defaultActiveKey}
+            items={items}
+            activeKey={activeKey}
+          />
         </div>
       </div>
     </div>
