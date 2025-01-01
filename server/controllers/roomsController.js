@@ -18,14 +18,15 @@ exports.getFilteredRooms = async (req, res, next) => {
     // Fetch rooms and populate currentbookings only for filtering
     const rooms = await Room.find().populate({
       path: "currentbookings",
-      select: "fromDate toDate", // Fetch only required fields for bookings
+      select: "fromDate toDate status", // Fetch only required fields for bookings
     });
 
     // Filter rooms based on availability
     const filteredRooms = rooms.filter((room) => {
+      console.log(room.currentbookings);
       if (room.currentbookings?.length > 0) {
         const hasConflict = room.currentbookings.some((booking) => {
-          return (
+          if (
             dayjs(fromDate).isBetween(
               booking.fromDate,
               booking.toDate,
@@ -40,8 +41,16 @@ exports.getFilteredRooms = async (req, res, next) => {
             ) ||
             dayjs(booking.fromDate).isBetween(fromDate, toDate, "day", "[]") ||
             dayjs(booking.toDate).isBetween(fromDate, toDate, "day", "[]")
-          );
+          ) {
+            if (booking.status !== "cancelled") {
+              return true;
+            }
+            console.log("room cancelled");
+            return false;
+          }
+          return false;
         });
+
         return !hasConflict; // Exclude room if conflict exists
       }
       return true; // Include room if no bookings

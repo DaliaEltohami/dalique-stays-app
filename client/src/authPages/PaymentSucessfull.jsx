@@ -15,7 +15,8 @@ const PaymentSuccessful = () => {
           subTitle="Thank you for your payment. Your transaction has been processed successfully."
           extra={[
             <Button
-              type="primary"
+              color="default"
+              variant="solid"
               size="large"
               icon={<CalendarOutlined />}
               onClick={() =>
@@ -25,7 +26,12 @@ const PaymentSuccessful = () => {
             >
               View Bookings
             </Button>,
-            <Button type="link" onClick={() => navigate("/")} key="home">
+            <Button
+              color="default"
+              variant="link"
+              onClick={() => navigate("/")}
+              key="home"
+            >
               Return to Home
             </Button>,
           ]}

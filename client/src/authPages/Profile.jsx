@@ -1,10 +1,12 @@
-import { Tabs } from "antd";
-import React, { useEffect, useState } from "react";
+import { Button, message, Modal, Tabs } from "antd";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { WarningTwoTone } from "@ant-design/icons";
+import dayjs from "dayjs";
 
 const Profile = ({ activeKey }) => {
   const location = useLocation();
@@ -62,13 +64,15 @@ const ProfileData = () => {
 };
 
 const Bookings = () => {
+  // const [open, setOpen] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState(null);
 
   const { userData } = useAuth();
 
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -85,11 +89,34 @@ const Bookings = () => {
     } finally {
       setLoading(false);
     }
+  }, [userData._id]);
+
+  const handleBookingCancel = async (bookingId) => {
+    console.log(bookingId);
+
+    try {
+      const result = await axios.post("/api/bookings/cancelbooking", {
+        bookingId,
+      });
+      if (result.status === 200) {
+        await message.success(
+          `Your Booking Number ${bookingId} cancelled successfully!!`,
+          2
+        );
+        fetchBookings();
+        return true;
+      } else if (result.status === 401) {
+        await message.error("This Booking Doesn't Exist!", 2);
+      }
+    } catch (error) {
+      await message.error("Failed To Cancle Your Booking");
+      return false;
+    }
   };
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [fetchBookings]);
 
   const renderBookings = () => {
     console.log("render bookingssssss");
@@ -110,7 +137,15 @@ const Bookings = () => {
             alt={`${booking.room.name} preview`}
           />
           <div className="position-absolute top-0 start-0 p-3 d-flex gap-2">
-            <span className="badge bg-black">{booking.room.type}</span>
+            <span
+              className={
+                booking.status === "cancelled"
+                  ? "badge bg-danger"
+                  : "badge bg-black"
+              }
+            >
+              {booking.status}
+            </span>
           </div>
         </div>
         <div className="card-body h-50 d-flex flex-column">
@@ -129,14 +164,47 @@ const Bookings = () => {
             </p>
             <p>
               <b>Check-In: </b>
-              {booking.fromDate}
+              {dayjs(booking.fromDate).format("YYYY-MM-DD")}
             </p>
             <p>
               <b>Check-Out: </b>
-              {booking.toDate}
+              {dayjs(booking.toDate).format("YYYY-MM-DD")}
             </p>
             <p className="mt-auto text-end">
-              <button className="btn btn-dark">Cancle Booking</button>
+              {booking.status !== "cancelled" && (
+                <Button
+                  color="default"
+                  variant="solid"
+                  onClick={() => {
+                    Modal.confirm({
+                      title: "Confirm",
+                      content: `are you sure you want to cancel your booking number ${booking._id}?`,
+                      icon: <WarningTwoTone twoToneColor="#FF0000" />,
+                      okButtonProps: { color: "danger", variant: "solid" },
+                      okText: "Confim",
+                      onOk: () => {
+                        return handleBookingCancel(booking._id);
+                      },
+                      footer: (_, { OkBtn, CancelBtn }) => (
+                        <>
+                          <CancelBtn />
+                          <OkBtn />
+                        </>
+                      ),
+                    });
+                  }}
+                >
+                  Cancel Booking
+                </Button>
+              )}
+              {/* <button
+                className="btn btn-dark"
+                onClick={() => {
+                  handleBookingCancel(booking._id);
+                }}
+              >
+                Cancle Booking
+              </button> */}
             </p>
           </div>
         </div>

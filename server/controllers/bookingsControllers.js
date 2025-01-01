@@ -85,6 +85,7 @@ exports.getBookingsByUserId = async (req, res, next) => {
     const user = await User.findById(userId);
     if (user) {
       const bookings = await Booking.find({ user: userId });
+
       if (bookings) {
         res.status(200).json({ bookings });
       } else {
@@ -93,6 +94,23 @@ exports.getBookingsByUserId = async (req, res, next) => {
     } else {
       return next(new CreateError("User Doesn't Exist", 401));
     }
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.cancelBooking = async (req, res, next) => {
+  const bookingId = req.body.bookingId;
+  try {
+    const booking = await Booking.findById(bookingId);
+    if (!booking) {
+      return next(new CreateError("This Booking Doesn't Exist", 401));
+    }
+    booking.status = "cancelled";
+    await booking.save();
+    return res.status(200).json({
+      message: `Booking with Id ${bookingId} Cancelled Successfully`,
+    });
   } catch (error) {
     return next(error);
   }
