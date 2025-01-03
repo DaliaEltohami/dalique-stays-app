@@ -89,7 +89,7 @@ const Bookings = () => {
     } finally {
       setLoading(false);
     }
-  }, [userData._id]);
+  }, [userData?._id]);
 
   const handleBookingCancel = async (bookingId) => {
     console.log(bookingId);
@@ -129,7 +129,7 @@ const Bookings = () => {
         </div>
       );
     return bookings.map((booking) => (
-      <div className="card mb-4 bs border-0 ">
+      <div key={booking._id} className="card mb-4 bs border-0 ">
         <div className="position-relative h-50">
           <img
             src={booking.room.imageurls[0]}
@@ -216,7 +216,7 @@ const Bookings = () => {
     if (loading)
       return <Loader color="#000" size={100} text="Loading Your Bookings..." />;
     if (error) return <Error error={error} callback={fetchBookings} />;
-    return renderBookings();
+    if (bookings) return renderBookings();
   };
 
   return <div>{renderContent()}</div>;

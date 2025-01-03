@@ -39,7 +39,7 @@ exports.singup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    
+
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -108,5 +108,17 @@ exports.verifyAuth = async (req, res, next) => {
       return next(new CreateError("Database Error Occurred", 402));
     }
     return next(new CreateError("Internal Server Error", 500));
+  }
+};
+
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    return res.status(200).json({
+      success: true,
+      data: users,
+    });
+  } catch (error) {
+    return next(new CreateError("Error Fetching Users Data", 500));
   }
 };

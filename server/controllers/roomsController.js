@@ -73,3 +73,15 @@ exports.getFilteredRooms = async (req, res, next) => {
     return next(new CreateError("Error Fetching Rooms!", 500));
   }
 };
+
+exports.getAllRooms = async (req, res, next) => {
+  try {
+    const rooms = await Room.find();
+    return res.status(200).json({
+      success: true,
+      data: rooms,
+    });
+  } catch (error) {
+    return next(new CreateError("Error Fetching Rooms", 500));
+  }
+};

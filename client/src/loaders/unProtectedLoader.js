@@ -6,7 +6,7 @@ const unProtectedLoader = async () => {
   if (isAuthenticated) {
     return redirect("/app");
   }
-  return null;
+  return isAuthenticated;
 };
 
 export default unProtectedLoader;

@@ -20,6 +20,8 @@ import { RoomsProvider } from "./contexts/RoomsContext";
 import PaymentSucessfull from "./authPages/PaymentSucessfull";
 import PaymentCancelled from "./authPages/PaymentCancelled";
 import Profile from "./authPages/Profile";
+import AdminPanel from "./authPages/AdminPanel";
+import adminLoader from "./loaders/adminLoader";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,11 @@ const router = createBrowserRouter([
                       {
                         path: "profile",
                         element: <Profile />,
+                      },
+                      {
+                        path: "admin",
+                        loader: adminLoader,
+                        element: <AdminPanel />,
                       },
                     ],
                   },

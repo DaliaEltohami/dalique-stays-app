@@ -115,3 +115,15 @@ exports.cancelBooking = async (req, res, next) => {
     return next(error);
   }
 };
+
+exports.getAllBookings = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find();
+    return res.status(200).json({
+      success: true,
+      data: bookings,
+    });
+  } catch (error) {
+    return next(new CreateError("Error Fetching Bookings", 500));
+  }
+};
