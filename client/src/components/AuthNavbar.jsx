@@ -47,12 +47,19 @@ const AuthNavbar = () => {
                     Profile
                   </Link>
                 </li>
-
+                {userData?.isAdmin && (
+                  <li>
+                    <Link className="dropdown-item" to="/admin">
+                      Admin Panel
+                    </Link>
+                  </li>
+                )}
                 <li
                   className="dropdown-item"
                   onClick={async () => {
                     await logout();
                   }}
+                  style={{ cursor: "pointer" }}
                 >
                   Logout
                 </li>

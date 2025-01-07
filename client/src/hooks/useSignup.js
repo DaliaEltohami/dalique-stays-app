@@ -59,6 +59,7 @@ export const useSignup = (userData) => {
         name: userData.name,
         email: userData.email,
         password: userData.password,
+        type: userData.type,
       };
 
       const res = await fetch("/api/auth/signup", {

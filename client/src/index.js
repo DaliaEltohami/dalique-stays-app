@@ -23,6 +23,105 @@ import Profile from "./authPages/Profile";
 import AdminPanel from "./authPages/AdminPanel";
 import adminLoader from "./loaders/adminLoader";
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/", // Root path for the entire app
+//     children: [
+//       {
+//         element: <DatesProvider />, // Wrap everything with AuthProvider
+//         children: [
+//           {
+//             element: <RoomsProvider />,
+//             children: [
+//               {
+//                 element: <App />, // Unprotected section
+//                 loader: unProtectedLoader,
+//                 children: [
+//                   {
+//                     index: true, // Default view under App
+//                     element: <DatesForm />,
+//                   },
+//                   {
+//                     path: "rooms",
+//                     element: <Rooms />,
+//                   },
+//                   {
+//                     path: "register",
+//                     element: <Register />,
+//                   },
+//                   {
+//                     path: "login",
+//                     element: <Login />,
+//                   },
+//                 ],
+//               },
+//               {
+//                 path: "app", // Path for the protected section
+//                 element: <AuthProvider />,
+//                 loader: protectedLoader,
+//                 children: [
+//                   {
+//                     element: <AuthApp />,
+//                     children: [
+//                       {
+//                         index: true, // Default view under App
+//                         element: <DatesForm />,
+//                       },
+//                       {
+//                         path: "rooms",
+//                         element: <Rooms />,
+//                       },
+//                       {
+//                         path: "room-booking/:roomId",
+//                         element: <RoomBooking />,
+//                       },
+//                       {
+//                         path: "payment-success",
+//                         element: <PaymentSucessfull />,
+//                       },
+//                       {
+//                         path: "payment-cancelled",
+//                         element: <PaymentCancelled />,
+//                       },
+//                       {
+//                         path: "profile",
+//                         element: <Profile />,
+//                       },
+//                     ],
+//                   },
+//                 ],
+//               },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         path: "admin",
+//         children: [
+//           {
+//             element: <AuthProvider />,
+//             loader: adminLoader,
+//             children: [
+//               {
+//                 element: <AuthApp />,
+//                 children: [{ index: true, element: <AdminPanel /> }],
+//               },
+//             ],
+//           },
+//           {
+//             path: "login",
+//             element: <Login />,
+//           },
+//           {
+//             path: "register",
+//             element: <Register />,
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ]);
+
 const router = createBrowserRouter([
   {
     path: "/", // Root path for the entire app
@@ -93,16 +192,35 @@ const router = createBrowserRouter([
                         path: "profile",
                         element: <Profile />,
                       },
-                      {
-                        path: "admin",
-                        loader: adminLoader,
-                        element: <AdminPanel />,
-                      },
+                      // {
+                      //   path: "admin",
+                      //   loader: adminLoader,
+                      //   element: <AdminPanel />,
+                      // },
                     ],
                   },
                 ],
               },
             ],
+          },
+        ],
+      },
+      {
+        path: "admin",
+        children: [
+          {
+            element: <AuthApp />,
+            children: [
+              { index: true, loader: adminLoader, element: <AdminPanel /> },
+            ],
+          },
+          {
+            path: "login",
+            element: <Login />,
+          },
+          {
+            path: "register",
+            element: <Register />,
           },
         ],
       },

@@ -134,7 +134,7 @@ const RoomBooking = () => {
           </div>
         </div>
 
-        <button className="btn btn-dark" onClick={handlePayment}>
+        <button className="btn btn-dark " onClick={handlePayment}>
           Pay Now
         </button>
       </div>

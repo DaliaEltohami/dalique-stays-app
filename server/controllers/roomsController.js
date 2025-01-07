@@ -85,3 +85,46 @@ exports.getAllRooms = async (req, res, next) => {
     return next(new CreateError("Error Fetching Rooms", 500));
   }
 };
+
+exports.addRoom = async (req, res, next) => {
+  console.log(req.body);
+  try {
+    const roomData = { ...req.body };
+    if (
+      !roomData.name ||
+      !roomData.maxCount ||
+      !roomData.rentPerNight ||
+      !roomData.phoneNumber ||
+      !roomData.type ||
+      !roomData.description ||
+      !roomData.images
+    ) {
+      return next(new CreateError("Missing required Room fields", 400));
+    }
+
+    const newRoom = new Room({
+      name: roomData.name,
+      maxcount: roomData.maxCount,
+      rentperday: roomData.rentPerNight,
+      phonenumber: roomData.phoneNumber,
+      type: roomData.type,
+      description: roomData.description,
+      imageurls: roomData.images,
+      currentbookings: [],
+    });
+
+    const savedRoom = await newRoom.save();
+
+    // const newRoom = await Room.create(roomData);
+
+    return res.status(200).json({
+      success: true,
+      message: "Room Added Successfully",
+    });
+  } catch (error) {
+    if (error.name === "ValidationError") {
+      return next(new CreateError("Invalid Room data", 400));
+    }
+    return next(new CreateError(error));
+  }
+};

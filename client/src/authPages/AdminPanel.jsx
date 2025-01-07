@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import AllBookings from "../components/AllBookings";
 import AllRooms from "../components/AllRooms";
 import AllUsers from "../components/AllUsers";
+import AddRoom from "../components/AddRoom";
 
 const items = [
   {
@@ -18,7 +19,7 @@ const items = [
   {
     key: "3",
     label: "Add Room",
-    children: "",
+    children: <AddRoom />,
   },
   {
     key: "4",

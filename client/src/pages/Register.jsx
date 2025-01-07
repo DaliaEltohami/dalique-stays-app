@@ -12,8 +12,9 @@ const Register = () => {
     password: "",
     cPassword: "",
   });
+  const [type, setType] = useState("");
 
-  const { status, registerUser } = useSignup(formData);
+  const { status, registerUser } = useSignup({ ...formData, type });
 
   // Handle input changes with debouncing
   const handleInputChange = useMemo(
@@ -73,6 +74,25 @@ const Register = () => {
               />
             </div>
           ))}
+
+          <select
+            id="type"
+            style={{
+              color: type === "" ? "#6c757d" : "#374151",
+            }}
+            className="register-select"
+            value={type}
+            onChange={(e) => {
+              setType(e.target.value);
+            }}
+          >
+            <option value="" disabled>
+              Select Account Type
+            </option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+
           <button
             className="btn btn1 btn-dark w-100"
             type="submit"

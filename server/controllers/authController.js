@@ -13,7 +13,13 @@ exports.singup = async (req, res, next) => {
     }
     const hashedPasword = await bcrypt.hash(req.body.password, 12);
 
-    const newUser = await User.create({ ...req.body, password: hashedPasword });
+    const isAdmin = req.body.type === "admin" ? true : false;
+
+    const newUser = await User.create({
+      ...req.body,
+      password: hashedPasword,
+      isAdmin,
+    });
 
     // Assign JWT Token
     const token = jwt.sign({ _id: newUser._id }, JWT_SECRET, {
@@ -121,4 +127,10 @@ exports.getAllUsers = async (req, res, next) => {
   } catch (error) {
     return next(new CreateError("Error Fetching Users Data", 500));
   }
+};
+
+exports.addRoom = (req, res, next) => {
+  try {
+    const roomData = { ...req.body };
+  } catch (error) {}
 };

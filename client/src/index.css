@@ -162,3 +162,24 @@ body {
 .ant-tabs-content-holder {
   text-align: left !important;
 }
+
+.ant-select-selector {
+  border: 1px solid black !important;
+  text-align: left;
+  color: black;
+}
+
+input::placeholder {
+  color: gray !important;
+}
+
+.register-select {
+  border-radius: 0.375rem;
+  width: 100%;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 5px;
+}
+.register-select:focus {
+  outline: none;
+}
