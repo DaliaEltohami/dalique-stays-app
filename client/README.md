@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Dalique Stays App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dalique Stays is a web application designed to simplify hotel booking for guests while providing an intuitive admin dashboard for hotel management. The application includes secure payment processing through Stripe.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Guest Features
 
-### `npm start`
+- **User Authentication**: Secure login and registration for guests
+- **Hotel Information**: Access detailed information about the hotel, including available rooms and their amenities
+- **Room Booking**: Browse available rooms and make real-time reservations
+- **Stripe Payment Gateway**: Process secure online payments for room bookings
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Admin Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Admin Dashboard**: Manage hotel data through a user-friendly interface
+- **Add Rooms**: Add new rooms to the database with details like type, price, and availability
+- **View Bookings**: Monitor and manage all guest reservations
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To set up the Dalique Stays App locally, follow these steps:
 
-### `npm run build`
+1. **Clone the repository**:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/DaliaEltohami/dalique-stays-app.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Navigate to the project directory**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   cd dalique-stays-app
+   ```
 
-### `npm run eject`
+3. **Install dependencies**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Set up environment variables**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Create a `.env` file in the root directory
+   - Add necessary environment variables as specified in `.env.example`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. **Run the application**:
+   ```bash
+   npm start
+   ```
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Guests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Browse available rooms with detailed information
+- Book rooms in real-time with secure payment processing via Stripe
 
-### Code Splitting
+### Admin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Use the dashboard to manage hotel data
+- Add new rooms with details like type, price, and availability
+- View and monitor guest reservations
 
-### Analyzing the Bundle Size
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Frontend**: React.js
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Payment Gateway**: Stripe
+- **Authentication**: JWT (JSON Web Tokens)
+- **Styling**: CSS, Bootstrap, ant design
 
-### Making a Progressive Web App
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+For any inquiries or support, please contact:
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Name**: Dalia Eltohami
+- **Email**: DaliaEltohami1991@gmail.com
+- **linkedin**: www.linkedin.com/in/daliaeltohami
