@@ -129,8 +129,3 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
-exports.addRoom = (req, res, next) => {
-  try {
-    const roomData = { ...req.body };
-  } catch (error) {}
-};
