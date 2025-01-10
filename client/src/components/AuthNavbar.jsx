@@ -6,7 +6,7 @@ const AuthNavbar = () => {
   console.log("AuthNavbar Rendered!");
   const { logout, userData } = useAuth();
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand fw-bold text-uppercase">
           Dalique Stays

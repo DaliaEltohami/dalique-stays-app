@@ -94,7 +94,7 @@ const Register = () => {
           </select>
 
           <button
-            className="btn btn1 btn-dark w-100"
+            className="btn btn1 btn-dark "
             type="submit"
             disabled={status.loading}
           >
@@ -103,7 +103,7 @@ const Register = () => {
         </form>
       </div>
     ),
-    [formData, status.loading, handleInputChange, handleRegister]
+    [formData, status.loading, handleInputChange, handleRegister, type]
   );
 
   // Render status components
@@ -123,8 +123,8 @@ const Register = () => {
 
   return (
     <div className="container">
-      <div className="row justify-content-center mt-5">
-        <div className="col-md-6">
+      <div className="row justify-content-center mt-5 text-center">
+        <div className="col-md-8">
           {renderAlerts()}
           {renderRegister()}
         </div>

@@ -14,7 +14,7 @@ const Login = () => {
 
   return (
     <div className="container">
-      <div className="row justify-content-center mt-5">
+      <div className="row justify-content-center mt-5 text-center">
         <div className="col-md-8">
           <div className="bs p-3">
             <h2 className="mb-4">Login</h2>

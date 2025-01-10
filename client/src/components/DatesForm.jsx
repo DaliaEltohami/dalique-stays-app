@@ -52,6 +52,16 @@ const DatesForm = () => {
 
   return (
     <div className="container mt-4">
+      {/* Hero Section */}
+      <div className="hero-section text-center">
+        <Title level={1} className="main-title">
+          Welcome to Dalique Stays
+        </Title>
+        <Title level={3} className="subtitle">
+          Where Luxury Meets Comfort
+        </Title>
+      </div>
+
       <div className="row mb-4 justify-content-center">
         <div className="col-md-6">
           <Card
